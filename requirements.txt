@@ -1,0 +1,6 @@
+PyPDF2
+PyMuPDF
+sentence-transformers
+chromadb
+google-generativeai
+python-dotenv
