@@ -5,3 +5,7 @@ chromadb
 google-generativeai
 python-dotenv
 langchain-text-splitters
+ragas
+langchain-google-genai
+streamlit
+duckduckgo-search

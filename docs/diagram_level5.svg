@@ -1,0 +1,108 @@
+<svg width="100%" viewBox="0 0 680 300" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Level 5: Self-Healing RAG Architecture</title>
+  <desc>Flowchart showing the self-healing pipeline where retrieved and re-ranked local context passes through an LLM grader gate. If the context answers the query it synthesizes locally; if not, a DuckDuckGo live web search is triggered and the web answer is synthesized with citations.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text { font-family: sans-serif; }
+      .th { font-size: 14px; font-weight: 500; fill: #3d3d3a; }
+      .ts { font-size: 12px; font-weight: 400; fill: #73726c; }
+      .arr { stroke: #888780; stroke-width: 1.5; fill: none; }
+      .c-teal rect  { fill: #E1F5EE; stroke: #0F6E56; }
+      .c-teal .th   { fill: #085041; }
+      .c-teal .ts   { fill: #0F6E56; }
+      .c-purple rect{ fill: #EEEDFE; stroke: #534AB7; }
+      .c-purple .th { fill: #3C3489; }
+      .c-purple .ts { fill: #534AB7; }
+      .c-blue rect  { fill: #E6F1FB; stroke: #185FA5; }
+      .c-blue .th   { fill: #0C447C; }
+      .c-blue .ts   { fill: #185FA5; }
+      .c-amber rect { fill: #FAEEDA; stroke: #854F0B; }
+      .c-amber .th  { fill: #633806; }
+      .c-amber .ts  { fill: #854F0B; }
+      .c-coral rect { fill: #FAECE7; stroke: #993C1D; }
+      .c-coral .th  { fill: #712B13; }
+      .c-coral .ts  { fill: #993C1D; }
+      .c-green rect { fill: #EAF3DE; stroke: #3B6D11; }
+      .c-green .th  { fill: #27500A; }
+      .c-green .ts  { fill: #3B6D11; }
+      .diamond      { fill: #FAEEDA; stroke: #854F0B; stroke-width: 0.5; }
+      .diamond-t    { font-size: 13px; font-weight: 500; fill: #633806; font-family: sans-serif; }
+      @media (prefers-color-scheme: dark) {
+        .th { fill: #e8e6dc; }
+        .ts { fill: #9c9a92; }
+        .c-teal rect  { fill: #085041; stroke: #5DCAA5; }
+        .c-teal .th   { fill: #9FE1CB; }
+        .c-teal .ts   { fill: #5DCAA5; }
+        .c-purple rect{ fill: #26215C; stroke: #AFA9EC; }
+        .c-purple .th { fill: #CECBF6; }
+        .c-purple .ts { fill: #AFA9EC; }
+        .c-blue rect  { fill: #042C53; stroke: #85B7EB; }
+        .c-blue .th   { fill: #B5D4F4; }
+        .c-blue .ts   { fill: #85B7EB; }
+        .c-amber rect { fill: #412402; stroke: #EF9F27; }
+        .c-amber .th  { fill: #FAC775; }
+        .c-amber .ts  { fill: #EF9F27; }
+        .c-coral rect { fill: #4A1B0C; stroke: #F0997B; }
+        .c-coral .th  { fill: #F5C4B3; }
+        .c-coral .ts  { fill: #F0997B; }
+        .c-green rect { fill: #173404; stroke: #97C459; }
+        .c-green .th  { fill: #C0DD97; }
+        .c-green .ts  { fill: #97C459; }
+        .diamond      { fill: #412402; stroke: #EF9F27; }
+        .diamond-t    { fill: #FAC775; }
+      }
+    </style>
+  </defs>
+
+  <!-- Step 1: Retrieve and re-rank -->
+  <g class="c-blue">
+    <rect x="40" y="30" width="200" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="140" y="50" text-anchor="middle" dominant-baseline="central">Retrieve &amp; re-rank</text>
+    <text class="ts" x="140" y="68" text-anchor="middle" dominant-baseline="central">Local ChromaDB context</text>
+  </g>
+  <line x1="240" y1="56" x2="276" y2="56" class="arr" marker-end="url(#arrow)"/>
+
+  <!-- Grader gate diamond -->
+  <polygon points="340,30 420,56 340,82 260,56" class="diamond"/>
+  <text class="diamond-t" x="340" y="50" text-anchor="middle" dominant-baseline="central">LLM grader</text>
+  <text class="ts" x="340" y="67" text-anchor="middle" dominant-baseline="central">Answers query?</text>
+
+  <!-- YES path (down) -->
+  <line x1="340" y1="82" x2="340" y2="128" class="arr" marker-end="url(#arrow)"/>
+  <text class="ts" x="352" y="109" text-anchor="start">YES</text>
+  <g class="c-teal">
+    <rect x="240" y="130" width="200" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="340" y="150" text-anchor="middle" dominant-baseline="central">Synthesize local answer</text>
+    <text class="ts" x="340" y="168" text-anchor="middle" dominant-baseline="central">From retrieved chunks</text>
+  </g>
+
+  <!-- NO path (right then down) -->
+  <path d="M420 56 L560 56 L560 108" class="arr" fill="none" marker-end="url(#arrow)"/>
+  <text class="ts" x="494" y="48" text-anchor="middle">NO — fallback</text>
+
+  <!-- Web search -->
+  <g class="c-coral">
+    <rect x="480" y="110" width="160" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="560" y="130" text-anchor="middle" dominant-baseline="central">DuckDuckGo search</text>
+    <text class="ts" x="560" y="148" text-anchor="middle" dominant-baseline="central">Live web scraping</text>
+  </g>
+  <line x1="560" y1="162" x2="560" y2="208" class="arr" marker-end="url(#arrow)"/>
+
+  <g class="c-green">
+    <rect x="480" y="210" width="160" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="560" y="230" text-anchor="middle" dominant-baseline="central">Web answer synthesis</text>
+    <text class="ts" x="560" y="248" text-anchor="middle" dominant-baseline="central">With source citations</text>
+  </g>
+
+  <!-- Both outcomes converge to final -->
+  <path d="M340 182 L340 265" class="arr" fill="none" marker-end="url(#arrow)"/>
+  <path d="M560 262 L560 275 L340 275" class="arr" fill="none" marker-end="url(#arrow)"/>
+
+  <g class="c-purple">
+    <rect x="240" y="265" width="200" height="15" rx="4" stroke-width="0.5"/>
+    <text class="ts" x="340" y="273" text-anchor="middle" dominant-baseline="central">Final answer delivered</text>
+  </g>
+</svg>

@@ -1,0 +1,141 @@
+<svg width="100%" viewBox="0 0 680 430" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Level 2: Intermediate RAG Architecture</title>
+  <desc>Flowchart showing Intermediate RAG with Recursive Semantic Splitting, metadata tagging in ingestion, and query expansion with optional page filter, deduplication, and Gemini synthesis in retrieval.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text { font-family: sans-serif; }
+      .t  { font-size: 14px; font-weight: 400; fill: #3d3d3a; }
+      .th { font-size: 14px; font-weight: 500; fill: #3d3d3a; }
+      .ts { font-size: 12px; font-weight: 400; fill: #73726c; }
+      .arr { stroke: #888780; stroke-width: 1.5; fill: none; }
+      .arr-opt { stroke: #888780; stroke-width: 1.2; fill: none; stroke-dasharray: 5 3; }
+      .c-teal rect  { fill: #E1F5EE; stroke: #0F6E56; }
+      .c-teal .th   { fill: #085041; }
+      .c-teal .ts   { fill: #0F6E56; }
+      .c-purple rect{ fill: #EEEDFE; stroke: #534AB7; }
+      .c-purple .th { fill: #3C3489; }
+      .c-purple .ts { fill: #534AB7; }
+      .c-blue rect  { fill: #E6F1FB; stroke: #185FA5; }
+      .c-blue .th   { fill: #0C447C; }
+      .c-blue .ts   { fill: #185FA5; }
+      .c-amber rect { fill: #FAEEDA; stroke: #854F0B; }
+      .c-amber .th  { fill: #633806; }
+      .c-amber .ts  { fill: #854F0B; }
+      .c-coral rect { fill: #FAECE7; stroke: #993C1D; }
+      .c-coral .th  { fill: #712B13; }
+      .c-coral .ts  { fill: #993C1D; }
+      .c-green rect { fill: #EAF3DE; stroke: #3B6D11; }
+      .c-green .th  { fill: #27500A; }
+      .c-green .ts  { fill: #3B6D11; }
+      .phase-box    { fill: none; stroke: #B4B2A9; stroke-width: 0.5; stroke-dasharray: 5 4; }
+      .phase-lbl    { font-size: 11px; font-weight: 500; fill: #888780; font-family: sans-serif; }
+      @media (prefers-color-scheme: dark) {
+        .t  { fill: #c2c0b6; }
+        .th { fill: #e8e6dc; }
+        .ts { fill: #9c9a92; }
+        .c-teal rect  { fill: #085041; stroke: #5DCAA5; }
+        .c-teal .th   { fill: #9FE1CB; }
+        .c-teal .ts   { fill: #5DCAA5; }
+        .c-purple rect{ fill: #26215C; stroke: #AFA9EC; }
+        .c-purple .th { fill: #CECBF6; }
+        .c-purple .ts { fill: #AFA9EC; }
+        .c-blue rect  { fill: #042C53; stroke: #85B7EB; }
+        .c-blue .th   { fill: #B5D4F4; }
+        .c-blue .ts   { fill: #85B7EB; }
+        .c-amber rect { fill: #412402; stroke: #EF9F27; }
+        .c-amber .th  { fill: #FAC775; }
+        .c-amber .ts  { fill: #EF9F27; }
+        .c-coral rect { fill: #4A1B0C; stroke: #F0997B; }
+        .c-coral .th  { fill: #F5C4B3; }
+        .c-coral .ts  { fill: #F0997B; }
+        .c-green rect { fill: #173404; stroke: #97C459; }
+        .c-green .th  { fill: #C0DD97; }
+        .c-green .ts  { fill: #97C459; }
+        .phase-box    { stroke: #5F5E5A; }
+        .phase-lbl    { fill: #5F5E5A; }
+      }
+    </style>
+  </defs>
+
+  <!-- Phase containers -->
+  <rect class="phase-box" x="20" y="28" width="300" height="360" rx="10"/>
+  <text class="phase-lbl" x="38" y="46">INGESTION PHASE</text>
+  <rect class="phase-box" x="338" y="28" width="322" height="360" rx="10"/>
+  <text class="phase-lbl" x="356" y="46">RETRIEVAL &amp; SYNTHESIS PHASE</text>
+
+  <!-- INGESTION -->
+  <g class="c-teal">
+    <rect x="60" y="60" width="180" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="150" y="80" text-anchor="middle" dominant-baseline="central">PDF document</text>
+    <text class="ts" x="150" y="97" text-anchor="middle" dominant-baseline="central">Source paper</text>
+  </g>
+  <line x1="150" y1="112" x2="150" y2="148" class="arr" marker-end="url(#arrow)"/>
+
+  <g class="c-purple">
+    <rect x="60" y="150" width="180" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="150" y="170" text-anchor="middle" dominant-baseline="central">Recursive semantic</text>
+    <text class="ts" x="150" y="188" text-anchor="middle" dominant-baseline="central">splitting</text>
+  </g>
+  <line x1="150" y1="202" x2="150" y2="238" class="arr" marker-end="url(#arrow)"/>
+
+  <g class="c-coral">
+    <rect x="60" y="240" width="180" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="150" y="260" text-anchor="middle" dominant-baseline="central">Tag page metadata</text>
+    <text class="ts" x="150" y="278" text-anchor="middle" dominant-baseline="central">Page numbers injected</text>
+  </g>
+  <line x1="150" y1="292" x2="150" y2="328" class="arr" marker-end="url(#arrow)"/>
+
+  <g class="c-blue">
+    <rect x="60" y="330" width="180" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" x="150" y="352" text-anchor="middle" dominant-baseline="central">Embedding → ChromaDB</text>
+  </g>
+
+  <!-- RETRIEVAL -->
+  <g class="c-teal">
+    <rect x="368" y="60" width="162" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="449" y="80" text-anchor="middle" dominant-baseline="central">User query</text>
+    <text class="ts" x="449" y="97" text-anchor="middle" dominant-baseline="central">Natural language</text>
+  </g>
+
+  <!-- Two branches from query -->
+  <!-- Optional page filter (dashed) -->
+  <path d="M449 112 L449 128 L580 128 L580 148" class="arr-opt" marker-end="url(#arrow)"/>
+  <text class="ts" x="530" y="124" text-anchor="middle">optional</text>
+
+  <g class="c-green">
+    <rect x="530" y="150" width="110" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="585" y="170" text-anchor="middle" dominant-baseline="central">Page filter</text>
+    <text class="ts" x="585" y="188" text-anchor="middle" dominant-baseline="central">Metadata filter</text>
+  </g>
+
+  <!-- Query expansion -->
+  <line x1="449" y1="112" x2="449" y2="148" class="arr" marker-end="url(#arrow)"/>
+  <g class="c-purple">
+    <rect x="358" y="150" width="162" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="439" y="170" text-anchor="middle" dominant-baseline="central">LLM query expansion</text>
+    <text class="ts" x="439" y="188" text-anchor="middle" dominant-baseline="central">3 variations generated</text>
+  </g>
+  <line x1="439" y1="202" x2="439" y2="238" class="arr" marker-end="url(#arrow)"/>
+
+  <!-- Embedding -->
+  <g class="c-blue">
+    <rect x="358" y="240" width="162" height="52" rx="8" stroke-width="0.5"/>
+    <text class="th" x="439" y="260" text-anchor="middle" dominant-baseline="central">Embedding model</text>
+    <text class="ts" x="439" y="278" text-anchor="middle" dominant-baseline="central">All variations embedded</text>
+  </g>
+
+  <!-- page filter dashed down to embed -->
+  <path d="M585 202 L585 266 L522 266" class="arr-opt" marker-end="url(#arrow)"/>
+
+  <!-- Embed → dedup -->
+  <line x1="439" y1="292" x2="439" y2="328" class="arr" marker-end="url(#arrow)"/>
+  <text class="ts" x="456" y="316" text-anchor="start">top-2 per query</text>
+
+  <g class="c-coral">
+    <rect x="358" y="330" width="162" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" x="439" y="352" text-anchor="middle" dominant-baseline="central">Deduplicate → Prompt → LLM</text>
+  </g>
+</svg>
