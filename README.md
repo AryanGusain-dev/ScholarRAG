@@ -7,7 +7,7 @@ Instead of relying on an LLM's general (and sometimes hallucinated) knowledge, S
 
 This repository serves as a learning sandbox, demonstrating the progression from a basic "Naive" RAG pipeline to an optimized "Intermediate" system.
 
----
+```
 
 ## 🏗️ System Architectures
 
@@ -74,7 +74,7 @@ To demonstrate how RAG systems scale, we altered our engineering choices across 
 * **Retrieval:** 
   * *Level 1:* Strict Top-K (k=3) similarity search.
   * *Level 2:* **Query Expansion & Filtering** (An LLM translates the user's query into 4 distinct search terms to cast a wider net, deduplicates the results, and allows the user to pre-filter by page number).
-* **Synthesis:** Both levels use Gemini 1.5 Flash with a strict, anti-hallucination prompt.
+* **Synthesis:** Both levels use Gemini 2.5 Flash with a strict, anti-hallucination prompt.
 * **Evaluation:** Currently reliant on manual human inspection of the terminal output.
 
 ---
@@ -94,7 +94,7 @@ To demonstrate how RAG systems scale, we altered our engineering choices across 
 
 **1. Clone the repository:**
 ```bash
-git clone [https://github.com/yourusername/ScholarRAG.git](https://github.com/yourusername/ScholarRAG.git)
+git clone [https://github.com/AryanGusain-dev/ScholarRAG.git](https://github.com/AryanGusain-dev/ScholarRAG.git)
 cd ScholarRAG
 ```
 
@@ -130,6 +130,4 @@ python NaiveRAG.py
 **To run the upgraded system (with Query Expansion and Metadata Filtering):**
 ```bash
 python IntermediateRAG.py
-```
-
 ```
