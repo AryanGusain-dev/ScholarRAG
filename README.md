@@ -129,7 +129,7 @@ Each transition is motivated by a concrete failure mode, not just a desire to ad
 | **Embeddings (Bi-Encoder)** | `sentence-transformers` — `all-MiniLM-L6-v2` |
 | **Re-ranking (Cross-Encoder)** | `sentence-transformers` — `ms-marco-MiniLM-L-6-v2` |
 | **Vector database** | ChromaDB (local, persistent) |
-| **LLM engine** | Google Gemini 1.5 Flash (via `google-generativeai`) |
+| **LLM engine** | Google Gemini 2.5 Flash (via `google-generativeai`) |
 | **Automated evaluation** | Ragas |
 | **Web fallback** | `duckduckgo-search` |
 
